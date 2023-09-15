@@ -1,0 +1,55 @@
+/* components/AgentScreenDarkMode.module.css */
+
+/* Dark mode background for the agent messages screen */
+.dark-mode-agent-screen {
+  background-color: #121212;
+  color: #fff;
+}
+
+/* Dark mode chat messages */
+.dark-mode-agent-screen .chat-message {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+.dark-mode-chat-list {
+  background-color: #121212;
+  color: #fff;
+}
+
+.dark-mode-agent-chat-message {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+/* Dark mode background for the chat screen */
+.dark-mode-chat-screen {
+  background-color: #121212;
+  color: #fff;
+}
+
+/* Dark mode chat messages */
+.dark-mode-chat-screen .chat-message {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+/* Dark mode chat input */
+.dark-mode-chat-screen .chat-input input {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Customize other dark mode styles as needed */
+
+/* Dark mode chat widget background */
+.dark-mode-widget {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Dark mode chat messages */
+.dark-mode-widget .chat-messages {
+  background-color: #1e1e1e;
+  border: 1px solid #444;
+}
