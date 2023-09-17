@@ -79,8 +79,7 @@ const Home = () => {
 
   useEffect(() => {
     if (customerId && state.chat) {
-      loadInitialHistory(state.chat).then(() => {
-      });
+      loadInitialHistory(state.chat).then(() => {});
     }
   }, [customerId, state.chat]);
 
@@ -176,24 +175,25 @@ const Home = () => {
       if (state.chat) {
         return;
       }
+
       if (totalChats > 0) {
         const chat = chatsSummary[0];
         setState((oldState) => ({ ...oldState, chat }));
       } else {
-        // customerSDK
-        //   .startChat({
-        //     chat: {
-        //       thread: {
-        //         channelType: "web",
-        //         authorName: "John Doe",
-        //         text: "Hello, I have a question about your product.",
-        //       },
-        //     },
-        //   })
-        //   .then((chat) => {
-        //     console.log("chat: ", chat);
-        //     setState((oldState) => ({ ...oldState, chat }));
-        //   });
+        customerSDK
+          .startChat({
+            chat: {
+              thread: {
+                channelType: "web",
+                authorName: "John Doe",
+                text: "Hello, I have a question about your product.",
+              },
+            },
+          })
+          .then((chat) => {
+            console.log("chat: ", chat);
+            setState((oldState) => ({ ...oldState, chat: chat.chat }));
+          });
       }
     });
   };
