@@ -180,20 +180,20 @@ const Home = () => {
         const chat = chatsSummary[0];
         setState((oldState) => ({ ...oldState, chat }));
       } else {
-        customerSDK
-          .startChat({
-            chat: {
-              thread: {
-                channelType: "web",
-                authorName: "John Doe",
-                text: "Hello, I have a question about your product.",
-              },
-            },
-          })
-          .then((chat) => {
-            console.log("chat: ", chat);
-            setState((oldState) => ({ ...oldState, chat }));
-          });
+        // customerSDK
+        //   .startChat({
+        //     chat: {
+        //       thread: {
+        //         channelType: "web",
+        //         authorName: "John Doe",
+        //         text: "Hello, I have a question about your product.",
+        //       },
+        //     },
+        //   })
+        //   .then((chat) => {
+        //     console.log("chat: ", chat);
+        //     setState((oldState) => ({ ...oldState, chat }));
+        //   });
       }
     });
   };
