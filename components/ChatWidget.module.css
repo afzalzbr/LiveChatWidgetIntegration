@@ -1,6 +1,8 @@
 /* components/ChatWidget.module.css */
 
 .chat-widget {
+  min-height: 500px;
+  max-height: 500px;
   width: 350px;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -9,6 +11,8 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .chat-header {
@@ -35,11 +39,12 @@
 }
 
 .chat-messages {
-  max-height: 250px;
+  /* max-height: 250px; */
   overflow-y: scroll;
   padding: 10px;
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .chat-message {

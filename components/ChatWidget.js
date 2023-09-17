@@ -1,24 +1,31 @@
 "use client";
 // components/ChatWidget.js
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./ChatWidget.module.css";
 import darkModeStyles from "./DarkMode.module.css"; // Import your dark mode CSS module
 
-const ChatWidget = () => {
-  const [messages, setMessages] = useState([
-    { text: "This is Joseph. How May I help you?", sender: "agent" },
-    {
-      text: "I'm Martin, I need help with this LiveChat APIs.",
-      sender: "user",
-    },
-    {
-      text: "It's good to see you Martin, What help do you need with the API? I can share the link...",
-      sender: "agent",
-    },
-  ]);
+const ChatWidget = ({
+  chat,
+  customerId,
+  sendMessage,
+  messages,
+  setMessages,
+}) => {
+  // const [messages, setMessages] = useState([
+  //   { text: "This is Joseph. How May I help you?", sender: "agent" },
+  //   {
+  //     text: "I'm Martin, I need help with this LiveChat APIs.",
+  //     sender: "user",
+  //   },
+  //   {
+  //     text: "It's good to see you Martin, What help do you need with the API? I can share the link...",
+  //     sender: "agent",
+  //   },
+  // ]);
   const [newMessage, setNewMessage] = useState("");
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const chatMessagesRef = useRef(null);
 
   useEffect(() => {
     // Check for dark mode preference on initial load
@@ -30,10 +37,17 @@ const ChatWidget = () => {
 
   const handleSendMessage = () => {
     if (newMessage.trim() !== "") {
-      setMessages([...messages, { text: newMessage, sender: "user" }]);
+      const messageId = `${Math.random() * 1000}`;
+      sendMessage(chat.id, messageId, newMessage);
       setNewMessage("");
     }
   };
+
+  useEffect(() => {
+    if (chatMessagesRef.current) {
+      chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const containerClass = isDarkMode
     ? `${styles["agent-screen"]} ${darkModeStyles["dark-mode"]}`
@@ -51,7 +65,7 @@ const ChatWidget = () => {
       <div className={styles["chat-header"]}>
         <h2>Chat Widget</h2>
       </div>
-      <div className={messageContainerClass}>
+      <div className={messageContainerClass} ref={chatMessagesRef}>
         {messages.map((message, index) => (
           <div
             key={index}
