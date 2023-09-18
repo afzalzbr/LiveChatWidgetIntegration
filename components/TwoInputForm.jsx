@@ -45,6 +45,9 @@ const TwoInputForm = ({ onSubmit, onClear }) => {
   return (
     <div className={styles["two-input-form"]}>
       {/* Apply the CSS Module class */}
+      <p className={styles["message"]}>
+        Be sure that you client id has scope of <em>customers:own</em>
+      </p>
       <label className={styles["input-label"]}>
         {/* Apply the CSS Module class */}
         License Id:
