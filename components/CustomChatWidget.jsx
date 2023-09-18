@@ -1,26 +1,25 @@
 "use client";
+// CustomWidgetComponent.js
 
-// pages/index.js
 import React, { useState, useEffect, useCallback } from "react";
 import ChatWidget from "../components/ChatWidget";
 import * as CustomerSDK from "@livechat/customer-sdk";
 import Link from "next/link";
-import styles from "./page.module.css";
 
-const Home = () => {
+const CustomChatWidget = ({ clientId, licenseId }) => {
   const [customerSDK, setCustomerSDK] = useState(null);
   const [state, setState] = useState({ chat: null, users: {} });
   const [messages, setMessages] = useState([]);
   const [customerId, setCustomerId] = useState("");
 
   useEffect(() => {
+    console.log("useEffect: ", clientId, Number(licenseId));
     const sdk = new CustomerSDK.init({
-      licenseId: 16142280,
-      clientId: "cb29ee529b302062032f83fa653c33e0",
+      licenseId: Number(licenseId),
+      clientId: clientId,
     });
 
     setCustomerSDK(sdk);
-    window.customerSDK = sdk;
 
     return () => {
       sdk.disconnect();
@@ -269,20 +268,11 @@ const Home = () => {
   };
 
   if (!customerSDK) {
-    return (
-      <div className={styles["loading-container"]}>
-        <h1>Loading...</h1>
-      </div>
-    );
+    return <div>Loading...</div>;
   }
 
   return (
-    <div className={styles.container}>
-      <h1>My Next.js Chat App</h1>
-      <p className={styles["custom-p"]}>
-        Have your own Licence and ClientId?{" "}
-        <Link href="/custom">Try it here!</Link>
-      </p>
+    <div>
       <ChatWidget
         customerId={customerId}
         chat={state.chat}
@@ -294,4 +284,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default CustomChatWidget;
